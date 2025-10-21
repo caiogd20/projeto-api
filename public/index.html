@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Factorio</title>
+    <link rel="stylesheet" href="./stylesheets/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>Mini Factorio</h1>
+            <div class="stats">
+                <span>Recursos: <span id="resources">100</span></span>
+                <span>Energia: <span id="energy">50</span></span>
+            </div>
+        </div>
+        
+        <div class="toolbar">
+            <button class="tool active" data-tool="hand">✋ Mão</button>
+            <button class="tool" data-tool="miner">⛏️ Minerador</button>
+            <button class="tool" data-tool="belt">➡️ Esteira</button>
+            <button class="tool" data-tool="factory">🏭 Fábrica</button>
+        </div>
+        
+        <canvas id="gameCanvas" width="800" height="500"></canvas>
+        
+        <div class="instructions">
+            <p>Instruções: Selecione uma ferramenta e clique no mapa para construir</p>
+            <p>WASD para mover | Scroll para zoom | Espaço para coletar recursos</p>
+        </div>
+    </div>
+    <script src="./javascripts/script.js"></script>
+</body>
+</html>
