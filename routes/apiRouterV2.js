@@ -5,15 +5,19 @@ var apiRouterV2 = express.Router();
 const knex = require('knex')(require('../knexfile').development);
 
 
-apiRouterV2.get('/produtos', function(req, res, next) {
-  knex('produtos')
-    .select('*')
-    .then(produtos => {
-      res.status(200).json(produtos);
+apiRouterV2.get('/filmes', function(req, res, next) {
+  knex('filmes')
+    .leftJoin('filmes_genero', 'filmes.id_filme', '=', 'filmes_genero.id_filme')
+    .leftJoin('generos', 'filmes_genero.id_genero', '=', 'generos.id_genero')
+    .select('filmes.dsc_filme')
+    .select(knex.raw("GROUP_CONCAT(generos.dsc_genero SEPARATOR ', ') AS dsc_generos"))
+    .groupBy('filmes.id_filme')
+    .then(filmes => {
+      res.status(200).json(filmes);
     })
     .catch(err => {
       console.error(err);
-      res.status(500).json({ error: 'Erro ao buscar produtos' });
+      res.status(500).json({ error: 'Erro ao buscar filmes' });
     });
 });
 
